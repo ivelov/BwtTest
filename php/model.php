@@ -1,17 +1,22 @@
 <?php
 $user = "root";
 $pass = "034320";
-function getConfs(): array|false{
+function getConfs(){
     try {
-        
-        $dbh = new PDO('mysql:host=localhost;dbname=bwttest', $user, $pass);
-        $result = ($dbh->query('SELECT * from conferences'))->fetchALL(PDO::FETCH_NUM);        
-        $dbh = null;
-        return $result;
+        global $user, $pass;
 
+        $dbh = new PDO('mysql:host=localhost;dbname=bwttest', $user, $pass);
+        //$result = ($dbh->query('SELECT * from conferences'))->fetchALL(PDO::FETCH_NUM);        
+        foreach($dbh->query('SELECT * from conferences') as $row) {
+            $name = $row['name'];
+            $id = $row['id'];
+            $date = $row['date'];
+
+            include 'tableRow.php';
+        }
+        $dbh = null;
     } catch (PDOException $e) {
-        return false;
-        //print "Error!: " . $e->getMessage() . "<br/>";
+        print "Error!: " . $e->getMessage() . "<br/>";
         die();
     }
 }
