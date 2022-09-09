@@ -12,11 +12,14 @@ class Controller{
                 break;
         
             case 'addConference':
-                \model\Model::addConf($_POST['name'],$_POST['date'],$_POST['lat'],$_POST['long'],$_POST['country']);
+                \model\Model::addConf($_POST['name'],$_POST['date'],$_POST['lat'],$_POST['lon'],$_POST['country']);
                 break;
         
+            case 'delConference':
+                \model\Model::delConf($_POST['id']);
+                break;
             default:
-                print('Unknown action error');
+                print('Error: Unknown action');
                 break;
         }
     }

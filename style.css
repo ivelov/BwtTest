@@ -1,3 +1,23 @@
 .addbtn{
     margin-right: 1%;
 }
+.backbtn{
+    margin-left: 1%;
+}
+.form-inputs{
+    max-width: 300px;
+}
+.form-date{
+    max-width: 200px;
+}
+.form-group{
+   margin-bottom: 15px;
+}
+#map{
+    width: 100%;
+    height: 300px;
+    max-width: 500px;
+}
+.form-select{
+    min-height: 35px;
+}

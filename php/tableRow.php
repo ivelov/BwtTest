@@ -1,4 +1,4 @@
-<tr>
+<tr id="tr-<?php print($id) ?>">
     <td><?php print($id) ?></td>
     <td><?php print($name) ?></td>
     <td><?php print($date) ?></td>
