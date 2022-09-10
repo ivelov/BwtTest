@@ -1,14 +1,5 @@
 
-nav span{
-    margin-left: 1%;
-}
-#page{
-    margin-left: 1%;
-}
-.addbtn{
-    margin-right: 1%;
-}
-.backbtn{
+nav span, #page, .addbtn, .backbtn{
     margin-left: 1%;
 }
 .form-inputs, .form-date{

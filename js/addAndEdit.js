@@ -73,6 +73,9 @@ function addOrUpdConf(isNew, id, name, country, lat, lon, datetime) {
         $('#text-upload').removeClass('dont-display');
         })
     .error(function(){alert("PostError")});
+    if(isNew){
+      $('#name').val('');
+    }
 }
 
 /** 
@@ -90,12 +93,15 @@ dateFull.getMinutes()+':'+
 dateFull.getSeconds();
 }
 
+var myMap = new MyMap();
+
+$(function(){
+  
 //Adds functionality to date and time pickers
 $('.pickadate').pickadate();
 $('.pickatime').pickatime();
 
-var myMap = new MyMap();
-
+});
 
 
 

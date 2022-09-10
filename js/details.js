@@ -43,7 +43,7 @@ function initMap() {
 
 function onEditClick(){
     toggleInputs(false);
-    $('#save-btn').removeClass('dont-display');
+    $('#sbm-btn').removeClass('dont-display');
     $('#cancel-btn').removeClass('dont-display');
     $('#edit-btn').addClass('dont-display');
     myMap.setDraggable(true);

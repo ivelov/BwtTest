@@ -28,6 +28,9 @@ function getPagesCount() {
     $.post('php/controller.php', {'action':'getRowsCount'}, function(data) {
         pagesCount = parseInt(parseInt(data)/15)+1;
         $('#span-page').text('Page '+(pageNum+1)+' of '+pagesCount);
+        if(pageNum+1 >= pagesCount){
+            $('#a-next').addClass("disabled");
+        }
         })
     .error(function(){alert("PostError")});
 }
@@ -56,12 +59,11 @@ if(pageNum == null || isNaN(pageNum)){
     $('#a-prev').addClass("disabled");
 }
 
-$('#a-prev').attr("href", "index.html?page="+(pageNum-1));
-$('#a-next').attr("href", "index.html?page="+pageNum+1);
-
 getConfs();
-
 getPagesCount();
+
+$('#a-prev').attr("href", "index.html?page="+(pageNum-1));
+$('#a-next').attr("href", "index.html?page="+(pageNum+1));
 
 });
 
