@@ -1,6 +1,9 @@
 
-nav span, #page, .addbtn, .backbtn{
+nav span, #page{
     margin-left: 1%;
+}
+.backbtn, .addbtn{
+    margin-right: 1%;
 }
 .form-inputs, .form-date{
     max-width: 300px;
