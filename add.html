@@ -10,9 +10,9 @@
 </head>
   <body>
 
-    <nav class="navbar navbar-light bg-light justify-content-between">
+    <nav class="navbar navbar-light bg-light">
         <a href="index.html" class="btn btn-outline-secondary backbtn">Back</a>
-        <span class="navbar-brand mb-0 h1 mx-auto" style="width: auto;">Conferences</span>
+        <span class="navbar-brand mb-0 h1">Conferences</span>
     </nav>
     <br>
     <br>
@@ -41,12 +41,18 @@
             </div>
             <div class="form-group form-date">
                 <label>Date and time</label>
-                <input type="text" value="" id="pickadate" class="pickadate form-control" placeholder="date"/>
-                <input type="text" value="" id="pickatime" class="pickatime form-control" placeholder="time"/>
+                    <div class="row dates">
+                        <div class="col">
+                            <input type="text" value="" id="pickadate" class="pickadate form-control" placeholder="date"/>
+                        </div>
+                        <div class="col">
+                            <input type="text" value="" id="pickatime" class="pickatime form-control" placeholder="time"/>
+                        </div>
+                    </div>
             </div>
             <p class="dont-display" id="text-upload">Data uploaded successfully!</p>
             <p class="dont-display" id="text-wait">Wait!</p>
-            <button type="button" class="btn btn-primary form-control form-btn" id="sbm-btn" onclick="onSubmit()">Submit</button>
+            <button type="button" class="btn btn-primary form-control form-btn" id="sbm-btn" onclick="onSubmit(true)">Submit</button>
             
         </form>
     </div>

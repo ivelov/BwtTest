@@ -8,23 +8,61 @@ function addConf(name, date, lat, long, country) {
 }
 
 function delConf(id) {
-    //if(isNaN(id) && !isNaN(parseFloat(str))) 
     $.post('php/controller.php', {'action':'delConference','id':parseInt(id)}, function(data) {
         console.log(data);
         })
     .error(function(){alert("PostError")});
     
-    //Delete tr from DOM
     $('#tr-'+id).remove();
 }
 
+function getConfs() {
+    $.post('php/controller.php', {'action':'getConferences','page':parseInt(pageNum)}, function(data) {
+        document.getElementById('tbody').innerHTML = data;
+        })
+    .error(function(){alert("PostError")});
+    
+}
 
-$.post('php/controller.php', {'action':'getConferences'}, function(data) {
-    document.getElementById('tbody').innerHTML = data;
-    })
-.error(function(){alert("PostError")});
+function getPagesCount() {
+    $.post('php/controller.php', {'action':'getRowsCount'}, function(data) {
+        pagesCount = parseInt(parseInt(data)/15)+1;
+        $('#span-page').text('Page '+(pageNum+1)+' of '+pagesCount);
+        })
+    .error(function(){alert("PostError")});
+}
 
-
+/** 
+  * Moves user to choosen page 
+  * @param {int} id id of conference to be moved to
+  */
 function trClick(id) {
     window.location.href = "details.html?id="+id;
 }
+
+var pageNum;
+
+$(function(){
+
+//Get page number
+const urlParams = new URLSearchParams(window.location.search);
+pageNum = parseInt(urlParams.get('page'));
+
+if(pageNum == null || isNaN(pageNum)){
+    pageNum = 0;
+    $('#a-prev').addClass("disabled");
+} else if(pageNum <= 0){
+    pageNum = 0;
+    $('#a-prev').addClass("disabled");
+}
+
+$('#a-prev').attr("href", "index.html?page="+(pageNum-1));
+$('#a-next').attr("href", "index.html?page="+pageNum+1);
+
+getConfs();
+
+getPagesCount();
+
+});
+
+

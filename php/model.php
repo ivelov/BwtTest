@@ -7,13 +7,13 @@ class Model{
     private static $pass = "034320";
 
      
-    //Returns all conferences in html format (tableRow.php)
-    static function getConfs(){
+    //Returns all conferences in choosen page in html format (tableRow.php) 
+    static function getConfs($page){
         try {
             //connecting to db
             $dbh = new PDO('mysql:host=localhost;dbname=bwttest', self::$user, self::$pass);
 
-            foreach($dbh->query('SELECT * FROM conferences') as $row) {
+            foreach($dbh->query('SELECT * FROM conferences ORDER BY date LIMIT '.($page * 15).', 15') as $row) {
                 $name = $row['name'];
                 $id = $row['id'];
                 $date = $row['date'];
@@ -93,8 +93,23 @@ class Model{
             '", country="' . $country . '" WHERE id=' . $id);
 
             $dbh = null;
-            
+
             print_r($result->fetchALL());
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    static function getRowsCount(){
+        try {
+            //connecting to db
+            $dbh = new PDO('mysql:host=localhost;dbname=bwttest', self::$user, self::$pass);
+            
+            $result = $dbh->query('SELECT COUNT(*) FROM conferences');
+            $dbh = null;
+
+            print($result->fetch()[0]);
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . "<br/>";
             die();

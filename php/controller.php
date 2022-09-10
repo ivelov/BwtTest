@@ -8,7 +8,7 @@ class Controller{
         switch ($action) 
         {
             case 'getConferences':
-                \model\Model::getConfs();
+                \model\Model::getConfs($_POST['page']);
                 break;
         
             case 'addConference':
@@ -25,6 +25,10 @@ class Controller{
             
             case 'updateConference':
                 \model\Model::updConf($_POST['id'],$_POST['name'],$_POST['date'],$_POST['lat'],$_POST['lon'],$_POST['country']);
+                break;
+            
+            case 'getRowsCount':
+                \model\Model::getRowsCount();
                 break;
             
             default:
