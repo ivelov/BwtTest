@@ -13,25 +13,24 @@ class MyMap {
     }
 
     getLat(){
-    return this.map.getCenter().lat();
+        return this.marker.getPosition().lat();
     }
     getLon(){
-    return this.map.getCenter().lng();
+        return this.marker.getPosition().lng();
     }
 
     //Itializes google map
     initMap(draggable, pos = this.countries['ukr']) {
-    this.map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 10,
-        center: pos,
-    });
-    this.marker = new google.maps.Marker({
-        position: pos,
-        map: this.map,
-        draggable: draggable,
-    });
-    this.isInit=true;
-
+        this.map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: pos,
+        });
+        this.marker = new google.maps.Marker({
+            position: pos,
+            map: this.map,
+            draggable: draggable,
+        });
+        this.isInit=true;
     }
 
     //Change location to choosen country

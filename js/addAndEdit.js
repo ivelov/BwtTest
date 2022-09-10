@@ -3,43 +3,47 @@ $('select').on('change', function (e) {
   if (typeof myMap !== 'undefined')
     myMap.changeCountry(this.value);
 });
-
-function onSubmit() {
+/** 
+  * Saves or creates new conference
+  * @param {bool} isNew if true - creates new, otherwise saves
+  */
+function onSubmit(isNew) {
   //If myMap isn't defined - don't go on
   if (typeof myMap == 'undefined')
     return;
 
   //Remove text about upload
-  document.getElementById('text-upload').classList.add('invisible');
+  $('#text-upload').addClass('dont-display');
 
-  name = document.getElementById('name').value;
-  country = document.getElementById('select').value;
+  name = $('#name').val();
+  id = $('#num').val();
+  country = $('#select').val();
   lat = myMap.getLat();
   lon = myMap.getLon();
-  date = document.getElementsByClassName('pickadate')[0].value;
-  time = document.getElementsByClassName('pickatime')[0].value;
+  date =  $('#pickadate').val();
+  time =  $('#pickatime').val();
   hasError = false;
 
   //If name input is empty
   if(name.trim().length === 0){
-    document.getElementById('name').classList.add('is-invalid');
+    $('#name').addClass('is-invalid');
     hasError = true;
   } else {
-    document.getElementById('name').classList.remove('is-invalid');
+    $('#name').removeClass('is-invalid');
   }
   //If date input is empty
   if(date.trim().length === 0){
-    document.getElementsByClassName('pickadate')[0].classList.add('is-invalid');
+    $('#pickadate').addClass('is-invalid');
     hasError = true;
   } else {
-    document.getElementsByClassName('pickadate')[0].classList.remove('is-invalid');
+    $('#pickadate').removeClass('is-invalid');
   }
   //If time input is empty
   if(time.trim().length === 0){
-    document.getElementsByClassName('pickatime')[0].classList.add('is-invalid');
+    $('#pickatime').addClass('is-invalid');
     hasError = true;
   } else {
-    document.getElementsByClassName('pickatime')[0].classList.remove('is-invalid');
+    $('#pickatime').removeClass('is-invalid');
   }
 
   if(hasError){
@@ -49,21 +53,33 @@ function onSubmit() {
   datetime = convertTime(date+' '+time);
 
   //Show wait text and disable button
-  document.getElementById('sbm-btn').classList.add('disabled');
-  document.getElementById('text-wait').classList.remove('invisible');
+  $('#sbm-btn').addClass('disabled');
+  $('#text-wait').removeClass('dont-display');
 
-    $.post('php/controller.php', {'action':'addConference',
-  'name':name, 'country':country, 'lat':lat, 'lon':lon, 'date':datetime}, function(data) {
-      console.log(data);
-      //Notify about upload success
-      document.getElementById('sbm-btn').classList.remove('disabled');
-      document.getElementById('text-wait').classList.add('invisible');
-      document.getElementById('text-upload').classList.remove('invisible');
-      })
-  .error(function(){alert("PostError")});
+  addOrUpdConf(isNew, id, name, country, lat, lon, datetime);
+  
+  
+    
 }
 
-//Converts date string to mysql datetime format string
+
+function addOrUpdConf(isNew, id, name, country, lat, lon, datetime) {
+    $.post('php/controller.php', {'action':(isNew?'addConference':'updateConference'),
+    'id':parseInt(id), 'name':name, 'country':country, 'lat':lat, 'lon':lon, 'date':datetime}, function(data) {
+        console.log(data);
+        //Notify about upload success
+        $('#sbm-btn').removeClass('disabled');
+        $('#text-wait').addClass('dont-display');
+        $('#text-upload').removeClass('dont-display');
+        })
+    .error(function(){alert("PostError")});
+}
+
+/** 
+  * Converts date string to mysql datetime format string 
+  * @param {string} datetime
+  * @return {string} datefull (yyyy-mm-dd hh:mm:ss)
+  */
 function convertTime(datetime){
   dateFull = new Date(datetime);
   return dateFull.getFullYear()+'-'+

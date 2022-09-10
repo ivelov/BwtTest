@@ -22,7 +22,11 @@ class Controller{
             case 'getConfDetails':
                 \model\Model::getConf($_POST['id']);
                 break;
-                    
+            
+            case 'updateConference':
+                \model\Model::updConf($_POST['id'],$_POST['name'],$_POST['date'],$_POST['lat'],$_POST['lon'],$_POST['country']);
+                break;
+            
             default:
                 print('Error: Unknown action');
                 break;

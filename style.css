@@ -4,11 +4,12 @@
 .backbtn{
     margin-left: 1%;
 }
-.form-inputs{
+.form-inputs, .form-date{
     max-width: 300px;
 }
-.form-date{
-    max-width: 300px;
+.form-btn{
+    max-width:150px;
+    margin-bottom: 10px;
 }
 .form-group{
    margin-bottom: 15px;
@@ -20,4 +21,7 @@
 }
 #select{
     min-height: 35px;
+}
+.dont-display{
+    display: none;
 }
