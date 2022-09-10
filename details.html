@@ -24,8 +24,8 @@
             </div>
             <div class="form-group form-inputs">
                 <label for="country">Country</label>
-                <select class="form-select" id="select">
-                    <option selected value="ukr">Ukraine</option>
+                <select id="select" class="form-select">
+                    <option value="ukr">Ukraine</option>
                     <option value="uk">United Kingdom</option>
                     <option value="usa">United States</option>
                     <option value="ru">Russia</option>
@@ -37,12 +37,18 @@
             </div>
             <div class="form-group form-date">
                 <label>Date and time</label>
-                <input type="text" value="" id="pickadate" class="pickadate form-control" placeholder="date"/>
-                <input type="text" value="" id="pickatime" class="pickatime form-control" placeholder="time"/>
+                    <div class="row dates">
+                        <div class="col">
+                            <input type="text" value="" id="pickadate" class="pickadate form-control" placeholder="date"/>
+                        </div>
+                        <div class="col">
+                            <input type="text" value="" id="pickatime" class="pickatime form-control" placeholder="time"/>
+                        </div>
+                    </div>
+                
             </div>
-            <button type="button" class="btn btn-primary form-control form-inputs" id="sbm-btn" onclick="onSubmit()">Submit</button>
-            <p class="invisible" id="text-upload">Data uploaded successfully!</p>
-            <p class="invisible" id="text-wait">Wait!</p>
+            <button type="button" class="btn btn-primary form-control form-inputs" id="sbm-btn" onclick="onEditClick()">Edit</button>
+            
         </form>
     </div>
     
@@ -60,8 +66,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/MyMap.js"></script>
     <script src="js/addAndEdit.js"></script>
-    <script src="js/add.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvKC-wRgTVGX1cu1h7PKlfqb6eF4SIDp0&callback=initMap&v=weekly" defer></script> 
+    <script src="js/details.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvKC-wRgTVGX1cu1h7PKlfqb6eF4SIDp0&callback=initMap&v=weekly" async defer></script> 
     <div id="test"></div>
   </body>
 </html>

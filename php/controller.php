@@ -18,6 +18,11 @@ class Controller{
             case 'delConference':
                 \model\Model::delConf($_POST['id']);
                 break;
+
+            case 'getConfDetails':
+                \model\Model::getConf($_POST['id']);
+                break;
+                    
             default:
                 print('Error: Unknown action');
                 break;

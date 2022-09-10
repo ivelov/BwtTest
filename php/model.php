@@ -65,6 +65,22 @@ class Model{
             die();
         }
     }
+
+    //Returns details of conf by id
+    static function getConf(int $id){
+        try {
+            //connecting to db
+            $dbh = new PDO('mysql:host=localhost;dbname=bwttest', self::$user, self::$pass);
+            
+            $result = $dbh->query('Select * from conferences WHERE id=' . $id);
+            //closing connection
+            $dbh = null;
+            print(json_encode($result->fetchALL(PDO::FETCH_ASSOC)));
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
 }
 
 ?>

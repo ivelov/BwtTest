@@ -8,7 +8,7 @@
     max-width: 300px;
 }
 .form-date{
-    max-width: 200px;
+    max-width: 300px;
 }
 .form-group{
    margin-bottom: 15px;
@@ -18,6 +18,6 @@
     height: 300px;
     max-width: 500px;
 }
-.form-select{
+#select{
     min-height: 35px;
 }

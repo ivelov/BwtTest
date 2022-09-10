@@ -24,3 +24,7 @@ $.post('php/controller.php', {'action':'getConferences'}, function(data) {
     })
 .error(function(){alert("PostError")});
 
+
+function trClick(id) {
+    window.location.href = "details.html?id="+id;
+}
